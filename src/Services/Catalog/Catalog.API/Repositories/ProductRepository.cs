@@ -13,23 +13,7 @@ namespace Catalog.API.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task CreateProduct(Product product)
-        {
-            await _context.Products.InsertOneAsync(product);
-        }
-
-        public async Task<bool> DeleteProduct(string id)
-        {
-            FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
-
-            DeleteResult deleteResult = await _context
-                .Products
-                .DeleteOneAsync(filter);
-
-            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
-        }
-
-        public async Task<Product> GetProduct(string id)
+        public async Task<Product> GetProductAsync(string id)
         {
             return await _context
                 .Products
@@ -37,7 +21,7 @@ namespace Catalog.API.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetProductByCategory(string categoryName)
+        public async Task<IEnumerable<Product>> GetProductByCategoryAsync(string categoryName)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Category, categoryName);
             return await _context
@@ -46,7 +30,7 @@ namespace Catalog.API.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetProductByName(string name)
+        public async Task<IEnumerable<Product>> GetProductByNameAsync(string name)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.ElemMatch(p => p.Name, name);
             return await _context
@@ -55,7 +39,7 @@ namespace Catalog.API.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetProducts()
+        public async Task<IEnumerable<Product>> GetProductsAsync()
         {
             return await _context
                 .Products
@@ -63,7 +47,12 @@ namespace Catalog.API.Repositories
                 .ToListAsync();
         }
 
-        public async Task<bool> UpdateProduct(Product product)
+        public async Task CreateProductAsync(Product product)
+        {
+            await _context.Products.InsertOneAsync(product);
+        }
+
+        public async Task<bool> UpdateProductAsync(Product product)
         {
             var updateResult = await _context
                 .Products
@@ -71,6 +60,17 @@ namespace Catalog.API.Repositories
 
             return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
 
+        }
+
+        public async Task<bool> DeleteProductAsync(string id)
+        {
+            FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
+
+            DeleteResult deleteResult = await _context
+                .Products
+                .DeleteOneAsync(filter);
+
+            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
     }
 }

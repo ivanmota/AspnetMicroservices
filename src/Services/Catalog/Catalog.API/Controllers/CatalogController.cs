@@ -22,7 +22,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            var products = await _repository.GetProducts();
+            var products = await _repository.GetProductsAsync();
             return Ok(products);
         }
 
@@ -31,7 +31,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(Product),(int)HttpStatusCode.OK)]
         public async Task<ActionResult<Product>> GetProductById(string id)
         {
-            var product = await _repository.GetProduct(id);
+            var product = await _repository.GetProductAsync(id);
             if (product == null)
             {
                 _logger.LogError($"Product with id: {id}, not found.");
@@ -45,7 +45,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategory(string category)
         {
-            var products = await _repository.GetProductByCategory(category);
+            var products = await _repository.GetProductByCategoryAsync(category);
             
             return Ok(products);
         }
@@ -54,7 +54,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
         {
-            await _repository.CreateProduct(product);
+            await _repository.CreateProductAsync(product);
 
             return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
         }
@@ -63,14 +63,14 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateProdutc([FromBody] Product product)
         {
-            return Ok(await _repository.UpdateProduct(product));
+            return Ok(await _repository.UpdateProductAsync(product));
         }
 
         [HttpDelete("{id:length(24)}", Name = "DeleteProduc")]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteProduc(string id)
         {
-            return Ok(await _repository.DeleteProduct(id));
+            return Ok(await _repository.DeleteProductAsync(id));
         }
     }
 }

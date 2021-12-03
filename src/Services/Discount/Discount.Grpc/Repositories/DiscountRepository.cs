@@ -13,7 +13,7 @@ namespace Discount.Grpc.Repositories
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-        public async Task<Coupon> GetDiscount(string productName)
+        public async Task<Coupon> GetDiscountAsync(string productName)
         {
             using var connection = new NpgsqlConnection(
                 _configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
@@ -26,7 +26,7 @@ namespace Discount.Grpc.Repositories
 
             return coupon;
         }
-        public async Task<bool> CreateDiscount(Coupon coupon)
+        public async Task<bool> CreateDiscountAsync(Coupon coupon)
         {
             using var connection = new NpgsqlConnection(
                 _configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
@@ -45,7 +45,7 @@ namespace Discount.Grpc.Repositories
             return true;
         }
 
-        public async Task<bool> UpdateDiscount(Coupon coupon)
+        public async Task<bool> UpdateDiscountAsync(Coupon coupon)
         {
             using var connection = new NpgsqlConnection(
                 _configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
@@ -66,7 +66,7 @@ namespace Discount.Grpc.Repositories
             return true;
         }
 
-        public async Task<bool> DeleteDiscount(string productName)
+        public async Task<bool> DeleteDiscountAsync(string productName)
         {
             using var connection = new NpgsqlConnection(
                 _configuration.GetValue<string>("DatabaseSettings:ConnectionString"));

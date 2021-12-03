@@ -20,6 +20,11 @@ Start App docker containers
 docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
 ```
 
+Build (new/updated) and start all App containers
+```powershell
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up --build
+```
+
 Stop App docker containers
 ```powershell
 docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml down
