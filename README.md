@@ -6,4 +6,4 @@ Some different aspects, compared with Mehmet Özkaya Repository:
 
 - I'm coding with Visual Studio 2022 Community
 - I'm coding using .Net 6
-- I've added the suffix "async" in async methods on repositories and services, etc.
+- I've added the suffix "async" in async methods on repositories, services, etc.
