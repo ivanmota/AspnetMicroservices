@@ -7,4 +7,4 @@ Some different aspects, compared with Mehmet Özkaya Repository:
 - I'm coding with Visual Studio Community 2022 using .Net 6
 - I've added the suffix "async" in async methods on repositories, services, etc.
 - Instead of using Newtonsoft.Json package I'm using System.Text.Json;
-- In the Orderring.Application the classes with the suffix "Vm" (View Model) I change the suffix to "Dto" (Data Transfere Object)
+- In the Orderring.Application for the classes with the suffix "Vm" (View Model) I changed the suffix to "Dto" (Data Transfere Object)
