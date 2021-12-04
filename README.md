@@ -8,4 +8,4 @@ Some different aspects, compared with Mehmet Özkaya Repository:
 - I've added the suffix "async" in async methods on repositories, services, etc.
 - Instead of using Newtonsoft.Json package I'm using System.Text.Json;
 - In the Ordering.Application for the classes with the suffix "Vm" (View Model) I changed the suffix to "Dto" (Data Transfere Object)
-- On logger messages we avoid use string interpolation
+- On logger messages I avoid to use string interpolation
