@@ -14,9 +14,9 @@ namespace Basket.API.Repositores
             _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
         }
 
-        public async Task<ShoppingCart?> GetBasketAsync(string username)
+        public async Task<ShoppingCart?> GetBasketAsync(string userName)
         {
-            var jsonString = await _redisCache.GetStringAsync(username);
+            var jsonString = await _redisCache.GetStringAsync(userName);
 
             if (string.IsNullOrWhiteSpace(jsonString)) return null;
 
@@ -34,9 +34,9 @@ namespace Basket.API.Repositores
             return await GetBasketAsync(basket.Username);
         }
 
-        public async Task DeleteBasketAsync(string username)
+        public async Task DeleteBasketAsync(string userName)
         {
-            await _redisCache.RemoveAsync(username);
+            await _redisCache.RemoveAsync(userName);
         }
     }
 }

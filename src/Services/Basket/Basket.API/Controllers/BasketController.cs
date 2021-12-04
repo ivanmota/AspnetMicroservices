@@ -19,12 +19,12 @@ namespace Basket.API.Controllers
             _discountGrpcService = discountGrpcService ?? throw new ArgumentNullException(nameof(discountGrpcService));
         }
 
-        [HttpGet("{username}", Name = "GetBasket")]
+        [HttpGet("{userName}", Name = "GetBasket")]
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<ShoppingCart>> GetBasket(string username)
+        public async Task<ActionResult<ShoppingCart>> GetBasket(string userName)
         {
-            var basket = await _repository.GetBasketAsync(username);
-            return Ok(basket ?? new ShoppingCart(username));
+            var basket = await _repository.GetBasketAsync(userName);
+            return Ok(basket ?? new ShoppingCart(userName));
         }
 
         [HttpPost]
@@ -44,11 +44,11 @@ namespace Basket.API.Controllers
             return Ok(await _repository.UpdateBasketAsync(basket));
         }
 
-        [HttpDelete("{username}", Name = "DeleteBasket")]
+        [HttpDelete("{userName}", Name = "DeleteBasket")]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> DeleteBasket(string username)
+        public async Task<IActionResult> DeleteBasket(string userName)
         {
-            await _repository.DeleteBasketAsync(username);
+            await _repository.DeleteBasketAsync(userName);
             return Ok();
         }
     }
