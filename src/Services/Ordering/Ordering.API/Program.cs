@@ -8,14 +8,15 @@ using Ordering.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+var services = builder.Services;
 
 // Add services to the container.
 
-builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(configuration);
+services.AddApplicationServices();
+services.AddInfrastructureServices(configuration);
 
 // MassTransit-RabbitMQ Configuration as a consumer
-builder.Services.AddMassTransit(config => {
+services.AddMassTransit(config => {
 
     config.AddConsumer<BasketCheckoutConsumer>();
 
@@ -29,12 +30,16 @@ builder.Services.AddMassTransit(config => {
         });
     });
 });
-builder.Services.AddMassTransitHostedService();
+services.AddMassTransitHostedService();
 
-builder.Services.AddControllers();
+// General Configuration
+services.AddScoped<BasketCheckoutConsumer>();
+services.AddAutoMapper(typeof(Program));
+
+services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
 
 var app = builder.Build();
 
