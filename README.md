@@ -1,6 +1,6 @@
 # AspnetMicroservices
 
-This project is part of my studies of Microservice Architecture. I am creating this code when I am doing the Udemy Course [Microservices Architecture and Implementation on .NET 5](https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet/) by [Mehmet Özkaya](https://github.com/mehmetozkaya). You can find his original code on [run-aspnetcore-microservices](https://github.com/aspnetrun/run-aspnetcore-microservices) repository.
+This project is part of my studies of Microservice Architecture. I'm creating this code while I'm doing the Udemy Course [Microservices Architecture and Implementation on .NET 5](https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet/) by [Mehmet Özkaya](https://github.com/mehmetozkaya). You can find his original code on [run-aspnetcore-microservices](https://github.com/aspnetrun/run-aspnetcore-microservices) repository.
 
 Some different aspects, compared with Mehmet Özkaya Repository:
 
