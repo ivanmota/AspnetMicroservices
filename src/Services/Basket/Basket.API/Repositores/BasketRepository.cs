@@ -1,5 +1,4 @@
 ﻿using Basket.API.Entities;
-using Basket.API.Parsing;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
@@ -20,13 +19,13 @@ namespace Basket.API.Repositores
 
             if (string.IsNullOrWhiteSpace(jsonString)) return null;
 
-            var serilalizerOptions = SerializerOptionsFactory.GetSerializerOptions();
+            var serilalizerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             return JsonSerializer.Deserialize<ShoppingCart?>(jsonString, serilalizerOptions);
         }
 
         public async Task<ShoppingCart?> UpdateBasketAsync(ShoppingCart basket)
         {
-            var serilalizerOptions = SerializerOptionsFactory.GetSerializerOptions();
+            var serilalizerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var jsonString = JsonSerializer.Serialize(basket, serilalizerOptions);
 
             await _redisCache.SetStringAsync(basket.Username, jsonString);
