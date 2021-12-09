@@ -20,7 +20,7 @@ namespace Basket.API.Repositores
             if (string.IsNullOrWhiteSpace(jsonString)) return null;
 
             var serilalizerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            return JsonSerializer.Deserialize<ShoppingCart?>(jsonString, serilalizerOptions);
+            return JsonSerializer.Deserialize<ShoppingCart>(jsonString, serilalizerOptions);
         }
 
         public async Task<ShoppingCart?> UpdateBasketAsync(ShoppingCart basket)
@@ -28,9 +28,9 @@ namespace Basket.API.Repositores
             var serilalizerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var jsonString = JsonSerializer.Serialize(basket, serilalizerOptions);
 
-            await _redisCache.SetStringAsync(basket.Username, jsonString);
+            await _redisCache.SetStringAsync(basket.UserName, jsonString);
 
-            return await GetBasketAsync(basket.Username);
+            return await GetBasketAsync(basket.UserName);
         }
 
         public async Task DeleteBasketAsync(string userName)
