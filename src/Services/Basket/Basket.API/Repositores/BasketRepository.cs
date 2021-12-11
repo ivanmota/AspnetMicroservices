@@ -25,8 +25,10 @@ namespace Basket.API.Repositores
 
         public async Task<ShoppingCart?> UpdateBasketAsync(ShoppingCart basket)
         {
-            var serilalizerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var jsonString = JsonSerializer.Serialize(basket, serilalizerOptions);
+            //var serilalizerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            //var jsonString = JsonSerializer.Serialize(basket, serilalizerOptions);
+
+            var jsonString = JsonSerializer.Serialize(basket);
 
             await _redisCache.SetStringAsync(basket.UserName, jsonString);
 
